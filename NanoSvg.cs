@@ -1,6 +1,7 @@
 //
-// Copyright (c) 2009 Mikko Mononen memon@inside.org
-// Ported to C# by Thinksquirrel Software, LLC
+// nanosvg-csharp Copyright (c) 2013 by Thinksquirrel Software, LLC
+//
+// nanosvg Copyright (c) 2009 Mikko Mononen memon@inside.org
 //
 // This software is provided 'as-is', without any express or implied
 // warranty.  In no event will the authors be held liable for any damages
@@ -19,8 +20,6 @@
 // The SVG parser is based on Anti-Graim Geometry SVG example
 // Copyright (C) 2002-2004 Maxim Shemanarev (McSeem)
 //
-// Version 1.0 - Initial version
-// Version 1.1 - Fixed path parsing, implemented curves, implemented circle.
 /* Example Usage:
         // Load
         string svgData = ...;

@@ -16,8 +16,9 @@ This is a line-by-line port of the [nanosvg](https://code.google.com/p/nanosvg/)
 		
 ## License
 
-	Copyright (c) 2009 Mikko Mononen memon@inside.org
-	Ported to C# 2013 by Thinksquirrel Software, LLC
+	nanosvg-csharp Copyright (c) 2013 by Thinksquirrel Software, LLC
+	
+	nanosvg Copyright (c) 2009 Mikko Mononen memon@inside.org
 
 	This software is provided 'as-is', without any express or implied
 	warranty.  In no event will the authors be held liable for any damages
