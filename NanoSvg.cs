@@ -976,17 +976,19 @@ namespace NanoSvg
         {
             // Init style
             for(int i = 0; i < this.attr.Length; ++i)
+            {
                 this.attr[i] = new SvgAttrib();
             
-            XformSetIdentity(ref this.attr[0].xform);
-            this.attr[0].fillColor = 0;
-            this.attr[0].strokeColor = 0;
-            this.attr[0].fillOpacity = 1;
-            this.attr[0].strokeOpacity = 1;
-            this.attr[0].strokeWidth = 1;
-            this.attr[0].hasFill = false;
-            this.attr[0].hasStroke = false;
-            this.attr[0].visible = true;
+                XformSetIdentity(ref this.attr[i].xform);
+                this.attr[i].fillColor = 0;
+                this.attr[i].strokeColor = 0;
+                this.attr[i].fillOpacity = 1;
+                this.attr[i].strokeOpacity = 1;
+                this.attr[i].strokeWidth = 1;
+                this.attr[i].hasFill = true;
+                this.attr[i].hasStroke = false;
+                this.attr[i].visible = true;
+            }
         }
   
         static void SvgResetPath(SvgParser p)
