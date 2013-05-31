@@ -35,6 +35,7 @@ namespace NanoSvg
     {   
         public class SvgPath
         {
+            public string id;
             public float[] pts;
             public int npts;
             public uint fillColor;
@@ -910,6 +911,7 @@ namespace NanoSvg
         
         class SvgAttrib
         {
+            public CString id;
             public Xf xform;
             public uint fillColor;
             public uint strokeColor;
@@ -980,6 +982,7 @@ namespace NanoSvg
                 this.attr[i] = new SvgAttrib();
             
                 XformSetIdentity(ref this.attr[i].xform);
+                this.attr[i].id = string.Empty;
                 this.attr[i].fillColor = 0;
                 this.attr[i].strokeColor = 0;
                 this.attr[i].fillOpacity = 1;
@@ -1058,6 +1061,7 @@ namespace NanoSvg
                 path.pts[i*2+1] = p.buf[i*2+0]*t[1] + p.buf[i*2+1]*t[3] + t[5];
             }
     
+            path.id = attr.id.ToString();
             path.hasFill = attr.hasFill;
             path.hasStroke = attr.hasStroke;
             path.strokeWidth = attr.strokeWidth * t[0];
@@ -1129,6 +1133,11 @@ namespace NanoSvg
                 return s;
             }
             return s;
+        }
+        
+        static CString ParseName(CString str)
+        {
+            return str;
         }
         
         static uint ParseColor(CString str)
@@ -1248,6 +1257,10 @@ namespace NanoSvg
             {
                 attr.fillOpacity = ParseFloat(value);
                 attr.strokeOpacity = attr.fillOpacity;
+            }
+            else if (strcmp(name, "id") == 0)
+            {
+                attr.id = ParseName(value);
             }
             else if (strcmp(name, "fill") == 0)
             {
