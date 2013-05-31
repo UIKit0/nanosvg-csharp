@@ -931,6 +931,7 @@ namespace NanoSvg
         bool pathFlag;
         bool defsFlag;
         float tol;
+        int bez;
         
         static void XformSetIdentity(ref Xf t)
         {
@@ -1424,7 +1425,7 @@ namespace NanoSvg
             float x12,y12,x23,y23,x34,y34,x123,y123,x234,y234,x1234,y1234;
             float d;
             
-            if (level > 12) return;
+            if (level > p.bez) return;
     
             x12 = (x1+x2)*0.5f;
             y12 = (y1+y2)*0.5f;
@@ -1464,7 +1465,7 @@ namespace NanoSvg
         {
             float x12,y12,x23,y23,x123,y123,d;
             
-            if (level > 12) return;
+            if (level > p.bez) return;
             
             x12 = (x1+x2)*0.5f;                
             y12 = (y1+y2)*0.5f;
@@ -1476,8 +1477,8 @@ namespace NanoSvg
             d = DistPtSeg(x123, y123, x1,y1, x3,y3);
             if (level > 0 && d < p.tol*p.tol)
             {
-                    SvgPathPoint(p, x123, y123);
-                    return;
+                SvgPathPoint(p, x123, y123);
+                return;
             }
             
             QuadBezRec(p, x1,y1, x12,y12, x123,y123, level+1); 
@@ -1988,14 +1989,21 @@ namespace NanoSvg
         }
         
         #region Public API
-        // Parses SVG file from a null terminated string, returns linked list of paths.
+        // Parses SVG file from a string, returns linked list of paths.
         public static SvgPath SvgParse(string input)
+        {
+            return SvgParse(input, 1.0f, 12);
+        }
+        
+        // Parses SVG file from a string with given parameters, returns linked list of paths.
+        public static SvgPath SvgParse(string input, float tol, int bez)
         {
             SvgParser p;
             SvgPath ret = null;
             
             p = new SvgParser();
-            p.tol = 1.0f;
+            p.tol = tol;
+            p.bez = bez;
             
             ParseXml(input, SvgStartElement, SvgEndElement, SvgContent, p);
            
